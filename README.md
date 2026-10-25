@@ -17,7 +17,7 @@ MIDI Player plays MIDI files, and the music in the games of the installed hybrid
 
 ## Requirements
 
-- **danik_hybrid_ports**, the launcher (`Scripts/danik_hybrid_ports.sh`): run it **once** from the MiSTer's `Scripts` menu. It starts the game whenever its menu entry is loaded, keeps running after a reboot, and serves all our hybrid ports; its screen picks which ports and games to have, and can keep them up to date through `update_all`. Without it the core says "Game not running".
+- **danik_hybrid_ports**, the launcher: run it **once** from the MiSTer's `Scripts` menu ([The launcher](#the-launcher)). Without it the core says "Game not running".
 - **Songs**, which are not included: your own MIDI files, or the music of the installed ports CrispyDoom (Doom, Doom II, Final Doom, Heretic, Hexen, Strife) and jfSW (Shadow Warrior), read from their games' files where they are. GeneralUser GS, the SoundFont, comes with the player (`games/dnk/SoundFonts/GeneralUser-GS.sf2`, its licence next to it); your own `.sf2` files can go in the same folder.
 
 ## Installation
@@ -47,6 +47,25 @@ On the left the 8 slots of the OSD line *SoundFont* (*Default* and 1 to 7), on t
 - **A on a font while nothing plays**: choose a slot for it on the left, and A puts it there. Or choose a slot first (Left / Right move between the lists) and press A: the font selected on the right goes in it. X clears a slot. A font can be in several slots.
 
 Every core reads the slots when its game loads a SoundFont, so a change reaches a game the next time it starts.
+
+## The launcher
+
+<p align="center"><img src="https://raw.githubusercontent.com/ItsDanik/Hybrid_MiSTer/main/docs/launcher.png" alt="The launcher's screen" width="70%"></p>
+
+**danik_hybrid_ports** is what turns a menu entry into a running game. Once you've run it from the `Scripts` menu, it starts with the MiSTer, watches which core is loaded, and starts the game whenever a hybrid port's menu entry is loaded. It serves all our hybrid ports at once and updates itself through `update_all`.
+
+Run it from the `Scripts` menu again whenever you want to change something. Its screen has:
+
+- **Launcher**: on or off. Off, the ports' games no longer start (the core says "Game not running"), until you turn it on again.
+- **Menu entries**: where the games appear in the MiSTer menu:
+  - **Other, as dnk-\<Title\>**: each game in the `Other` menu, e.g. **dnk-Doom** (the default).
+  - **Other/Hybrid Ports**: all of them in a *Hybrid Ports* folder in `Other`, without the `dnk-` in front.
+  - **Main menu/Hybrid Ports**: a *Hybrid Ports* folder of its own in the main menu, next to `Arcade`, `Console` and `Other`.
+
+  Moving them keeps each game's settings and button mappings. Favourites, recent lists and Zaparoo tags that point at the old place have to be made again.
+- **The ports and their games**, a tickbox each. Tick what you want, untick what you don't.
+
+*X: Apply* installs what is ticked and removes what is not, through Downloader, and moves the menu entries if you chose another place. When a port is removed, your game data, saved games and settings stay, and ticking it again brings it back as it was.
 
 ## OSD options
 
