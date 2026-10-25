@@ -1,0 +1,4 @@
+# The games of package/games.txt for dnkLauncher, the frontend (hybrid/docs/dnklauncher.md),
+# a line each: <id>|<year>|<developer>|<description>. The description is shown on the
+# game's Details page, at most 4 lines there (about 340 characters).
+MIDIPlayer|2026|danik|Plays MIDI files and the music of the hybrid ports' games on the core's own synthesizer, with any SoundFont, or on an MT32-pi. It is also where the SoundFont slots of every hybrid port with MIDI music are chosen.
