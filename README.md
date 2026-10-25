@@ -28,7 +28,7 @@ With `update_all` (Downloader 2.4 or newer, which update_all keeps up to date):
 2. Run `update_all`. That installs the launcher, **danik_hybrid_ports**, in `Scripts`.
 3. Run **danik_hybrid_ports** from the `Scripts` menu, tick the games you want and press *X: Apply*. They are installed, and update_all keeps them up to date.
 4. Copy your MIDI files, in folders if you like, to `/media/fat/games/dnk/MIDIPlayer/`: `.mid`, `.midi`, `.kar` and Doom's `.mus` files are played. Your own SoundFonts go to `/media/fat/games/dnk/SoundFonts/`.
-5. Load the player from the `Other` menu: **dnk-MIDI Player**.
+5. Load the player from the `Other` menu: **dnk-MIDI Player**, or from the `Hybrid Ports` folder if you moved the hybrid ports there in the launcher.
 
 > [!NOTE]
 > The songs can go on a USB drive instead, into the same folder there (`/media/usb0/games/dnk/MIDIPlayer/`): the player looks for them there first, and then keeps its settings there as well. SoundFonts can be on a USB drive too (`/media/usb0/games/dnk/SoundFonts/`), whose folder then wins over the SD card's for every core.
