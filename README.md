@@ -33,6 +33,9 @@ With `update_all` (Downloader 2.4 or newer, which update_all keeps up to date):
 > [!NOTE]
 > The songs can go on a USB drive instead, into the same folder there (`/media/usb0/games/dnk/MIDIPlayer/`): the player looks for them there first, and then keeps its settings there as well. SoundFonts can be on a USB drive too (`/media/usb0/games/dnk/SoundFonts/`), whose folder then wins over the SD card's for every core.
 
+> [!IMPORTANT]
+> **HDMI or VGA:** if you play on HDMI or on a VGA monitor rather than a 15kHz CRT, open the OSD and set *HDMI Only* to **Yes**. The MIDI Player's page is drawn at 640x480, which is interlaced for a CRT and shows combing on any other screen without it.
+
 The player remembers the folder, the song selected, its SoundFont, the play order, repeat, and synthesizer or MT32-pi in `games/dnk/MIDIPlayer/midiplayer.cfg`. The OSD's SoundFont slots are in `games/dnk/SoundFonts/slots.txt`. The log is `/media/fat/logs/dnk/MIDIPlayer/midiplayer.log`.
 
 ## The Player page
@@ -73,9 +76,10 @@ Run it from the `Scripts` menu again whenever you want to change something. Its 
 |---|---|
 | Aspect ratio, Scale, Scandoubler Fx, Stereo Mix | as in other cores |
 | FPS Counter | shows the pictures per second in the top left corner |
-| HDMI Only | **Yes** if no CRT is connected: resolutions of 640x400 and more are then progressive instead of interlaced, and the analog output is switched off while one is shown, so that a 15kHz screen can never get such a signal. Nothing changes at lower resolutions. Not needed with `forced_scandoubler=1` (VGA monitor); not there with `direct_video=1` |
-| CRT Options | **Horizontal Size**: the picture's width<br>**Horizontal Pos**: moves it left or right<br>**Vertical Pos**: moves it up or down<br><br>For a 15kHz screen: fits the picture to it. HDMI is not affected; not there with `forced_scandoubler=1` |
+| HDMI Only | **Yes** if no CRT is connected: resolutions of 640x400 and more are then progressive instead of interlaced, and so is the core's own screen before the game, which moves at 60 pictures a second for a CRT and shows fine lines on HDMI without it, as does the MIDI Player's page at 640x480. The analog output is switched off while one is shown, so that a 15kHz screen can never get such a signal. Nothing changes at lower resolutions. Not needed with `forced_scandoubler=1` (VGA monitor); not there with `direct_video=1` |
+| CRT Options | **Horizontal Size**: the picture's width<br>**Horizontal Pos**: moves it left or right<br>**Vertical Pos**: moves it up or down<br>**Flicker Filter**: Light (default), Strong or Off: softens fine lines that blink while the picture is interlaced<br><br>For a 15kHz screen: fits the picture to it. HDMI is not affected but by the Flicker Filter; not there with `forced_scandoubler=1` |
 | MT32-pi | **MT32-pi**: On (default) or Off<br>**MT32-pi Synth**: SoundFont or MT-32<br>**MT32-pi ROM**: MT-32 v1, MT-32 v2 or CM-32L<br>**MT32-pi SoundFont**: *Pi's own* (default) or 0 to 7 of its card<br>**Reset Hanging Notes**: silences notes left playing<br><br>Only there while an MT32-pi answers on the MiSTer's user port. Whether the music goes to it is the player's choice (`P`, or a click on the *On:* line) |
+| Reset | starts the MIDI Player again from its beginning, as the USER button does |
 | Save Diagnostic Report | the last line: see [If something is wrong](#if-something-is-wrong) |
 
 ## Controls

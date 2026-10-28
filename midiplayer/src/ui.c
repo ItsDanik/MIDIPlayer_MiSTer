@@ -27,7 +27,8 @@
 #define FONT_ROWS 7
 
 // A held direction: fields to its first repeat, and between repeats (even,
-// so that they fall on the frames of an interlaced mode)
+// so that they fall on the frames of an interlaced mode without field rate;
+// the page has field rate since host version 18, a frame every field)
 #define REPEAT_DELAY 18
 #define REPEAT_EVERY 4
 
@@ -114,9 +115,11 @@ static struct {
 static int music_plays(const pl_state* st);
 
 // Fields since `field`, signed: a time kept as `ui.field | 1` (0 is "not
-// set") is one field ahead of an even ui.field, and in an interlaced mode the
-// loop sees the counter even at every frame (the cursor was never drawn while
-// the mouse moved)
+// set") is one field ahead of an even ui.field, and in an interlaced mode
+// without field rate the loop saw the counter even at every frame (the cursor
+// was never drawn while the mouse moved). Every time here is in fields, never
+// in frames: the page takes a frame at every field (field rate) or every
+// second one (an older core), and moves at the same speed in both.
 static int32_t since(uint32_t field) {
     return (int32_t)(ui.field - field);
 }
@@ -1326,6 +1329,10 @@ void ui_run(void) {
     gfx_palette(palette);
     MH_SetFormat(MH_FORMAT_INDEX8);
     MH_SetMode(MH_MODE_640x480);
+    // a frame at every field of 480i, 59.6 a second on a CRT (Danik,
+    // 2026-10-28: "any cores that have 480i should become 480i/60"; host
+    // version 18, hybrid/CLAUDE.md "Field rate"); MH_WaitFrame() follows it
+    MH_SetFieldRate(1);
     MH_SetPalette(palette);
     ui.field = MH_FieldCounter();
     while (MH_CheckAlive()) {
@@ -1362,6 +1369,7 @@ void ui_run(void) {
         MH_WaitFrame(ui.field);
         ui.field = MH_FieldCounter();
     }
+    MH_SetFieldRate(0);
     remember();
     config_save(&ui.cfg);
     lib_close(&ui.folder);
